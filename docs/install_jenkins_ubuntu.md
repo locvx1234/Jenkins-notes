@@ -16,10 +16,12 @@ apt install openjdk-7-jdk
 Verify Java after installing
 
 ```
-java --version
+java -version
 ```
 
 The command should be have a result like this:
+
+<img src = '../images/java_result_1.png'>
 
 #### Step 2: Install Jenkins
 
