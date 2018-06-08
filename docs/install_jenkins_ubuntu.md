@@ -63,6 +63,11 @@ After running Jenkins then it will be open port 8080. Check it by this command:
 netstart -an | grep 8080
 ```
 
+#### Bonus information
+
+- [How to open Jenkins with port 80 or 443](https://wiki.jenkins.io/display/JENKINS/Running+Jenkins+on+Port+80+or+443+using+iptables)
+
+
 #### References
 [1] https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04/
 
