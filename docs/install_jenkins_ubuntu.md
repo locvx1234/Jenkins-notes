@@ -3,14 +3,14 @@
 
 This guide is to install Jenkins on Ubuntu 16.04. Please make sure that your system already was updated and running commands with root privilege.
 
-#### Step 1: Install Java OpenJDK 7
+#### Step 1: Install Java OpenJDK 8
 
 ```
 apt update
 apt install python-software-properties -y
 add-apt-repository ppa:openjdk-r/ppa
 apt update
-apt install openjdk-7-jdk
+apt install openjdk-8-jdk
 ```
 
 Verify Java after installing
@@ -38,9 +38,23 @@ apt update
 apt install jenkins
 ```
 
-When the installation is done, start Jenkins with this systemctl command.
+#### Step 3: Update the configuration file.
+
+In order to run Jenkins, it needs to be updated the path.
+
 ```
-systemctl start jenkins
+vim /etc/init.d/jenkins
+```
+
+Then update a new path at line 16.
+```
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib/jvm/java-8-openjdk-amd64/bin/
+```
+
+Restart daemon and Jenkins.
+```
+systemctl daemon-reload
+systemctl restart jenkins
 ```
 
 After running Jenkins then it will be open port 8080. Check it by this command:
@@ -51,3 +65,4 @@ netstart -an | grep 8080
 
 #### References
 [1] https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04/
+[2] https://stackoverflow.com/questions/39621263/jenkins-fails-when-running-service-start-jenkins
