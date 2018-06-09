@@ -6,11 +6,11 @@ This guide is to install Jenkins on Ubuntu 16.04. Please make sure that your sys
 #### Step 1: Install Java OpenJDK 8
 
 ```
-apt update
-apt install python-software-properties -y
-add-apt-repository ppa:openjdk-r/ppa
-apt update
-apt install openjdk-8-jdk
+sudo apt update
+sudo apt install python-software-properties -y
+sudo add-apt-repository ppa:openjdk-r/ppa
+sudo apt update
+sudo apt install openjdk-8-jdk -y
 ```
 
 Verify Java after installing
@@ -34,8 +34,8 @@ echo 'deb https://pkg.jenkins.io/debian-stable binary/' | tee -a /etc/apt/source
 Update repository and install Jenkins
 
 ```
-apt update
-apt install jenkins
+sudo apt update
+sudo apt install jenkins -y
 ```
 
 #### Step 3: Update the configuration file.
@@ -67,6 +67,12 @@ netstart -an | grep 8080
 
 - [How to open Jenkins with port 80 or 443](https://wiki.jenkins.io/display/JENKINS/Running+Jenkins+on+Port+80+or+443+using+iptables)
 
+TD;TR: Iptables commands is to redirect packets from 80 to 8080 and  443 to 8443
+
+```
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
+sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
+```
 
 #### References
 [1] https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04/
