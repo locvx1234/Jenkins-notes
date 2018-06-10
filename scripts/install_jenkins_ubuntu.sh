@@ -10,6 +10,7 @@ sleep 3
 
 sudo apt update -y
 sudo apt install software-properties-common python-software-properties apt-transport-https -y
+sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt update -y
 sudo apt install openjdk-8-jdk -y
 
