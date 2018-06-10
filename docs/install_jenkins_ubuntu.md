@@ -7,7 +7,7 @@ This guide is to install Jenkins on Ubuntu 16.04. Please make sure that your sys
 
 ```
 sudo apt update
-sudo apt install python-software-properties -y
+sudo apt install python-software-properties apt-transport-https -y
 sudo add-apt-repository ppa:openjdk-r/ppa
 sudo apt update
 sudo apt install openjdk-8-jdk -y
@@ -38,22 +38,8 @@ sudo apt update
 sudo apt install jenkins -y
 ```
 
-#### Step 3: Update the configuration file.
-
-In order to run Jenkins, it needs to be updated the path.
-
-```
-vim /etc/init.d/jenkins
-```
-
-Then update a new path at line 16.
-```
-PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/lib/jvm/java-8-openjdk-amd64/bin/
-```
-
 Restart daemon and Jenkins.
 ```
-systemctl daemon-reload
 systemctl restart jenkins
 ```
 
