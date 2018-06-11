@@ -59,6 +59,13 @@ TD;TR: Iptables commands is to redirect packets from 80 to 8080 and  443 to 8443
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 80 -j REDIRECT --to-port 8080
 sudo iptables -A PREROUTING -t nat -i eth0 -p tcp --dport 443 -j REDIRECT --to-port 8443
 ```
+Save Iptables on Ubuntu 16.04
+
+```
+sudo apt install iptables-persistent -y
+sudo netfilter-persistent save
+sudo netfilter-persistent reload
+```
 
 #### References
 [1] https://www.howtoforge.com/tutorial/how-to-install-jenkins-with-apache-on-ubuntu-16-04/
