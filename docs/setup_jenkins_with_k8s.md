@@ -156,11 +156,11 @@ Access to kube01 and run the below command to get certificates.
 ```
 mkdir ~/cert
 
-cat ~/.kube/config  | grep certificate-authority-data | cut -d ":" -f2 | base64 -d > ~/cert/ca.crt
+cat ~/.kube/config  | grep certificate-authority-data | awk -F ": " {'print $2'} | base64 -d > ~/cert/ca.crt
 
-cat ~/.kube/config  | grep client-certificate-data | cut -d ":" -f2 | base64 -d > ~/cert/client.crt
+cat ~/.kube/config  | grep client-certificate-data | awk -F ": " {'print $2'} | base64 -d > ~/cert/client.crt
 
-cat ~/.kube/config  | grep client-key-data | cut -d ":" -f2 | base64 -d > ~/cert/client.key
+cat ~/.kube/config  | grep client-key-data | awk -F ": " {'print $2'} | base64 -d > ~/cert/client.key
 ```
 
 - Client P12 Certificate File
@@ -168,9 +168,10 @@ cat ~/.kube/config  | grep client-key-data | cut -d ":" -f2 | base64 -d > ~/cert
 ```
 openssl pkcs12 -export -out ~/cert/cert.pfx -inkey ~/cert/client.key -in ~/cert/client.crt -certfile ~/cert/ca.crt
 ```
+**NOTE:** It is important that you provide a passphrase
 
 
 #### 4. Reference links
 
 [1] https://www.techrepublic.com/article/how-to-install-a-kubernetes-cluster-on-centos-7/
-
+[2] https://illya-chekrygin.com/2017/08/26/configuring-certificates-for-jenkins-kubernetes-plugin-0-12/
